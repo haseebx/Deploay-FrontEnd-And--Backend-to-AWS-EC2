@@ -1,0 +1,63 @@
+
+create ec2
+setup apache2 or nginx
+enable proxy mode commands (sudo a2enmod proxy, etc...)
+restart apache2
+
+
+go to 
+
+cd /etc/apache2/sites-available directory
+
+open 000-default.conf file and edit and cANGe to
+
+<VirtualHost *:80>
+    ServerName secureria-phishingsim.com (DNS NAME ) if don;t have then comment this line
+
+    ServerAdmin localhost
+    ProxyPreserveHost On
+
+    ProxyPass /admin http://localhost:8000/admin   (Be or admin confs)
+    ProxyPassReverse /admin http://localhost:8000/admin (Be or admin confs)
+
+    ProxyPass /static http://localhost:8000/static (Be or admin confs)
+    ProxyPassReverse /static http://localhost:8000/static (Be or admin confs)
+ 
+    ProxyPass /static/ http://localhost:8000/static/  (Be or admin confs)
+    ProxyPassReverse /static/ http://localhost:8000/static/ (Be or admin confs)
+
+    ProxyPass /api http://localhost:8000/api (Be or admin confs)
+    ProxyPassReverse /api http://localhost:8000/api (Be or admin confs)
+
+
+    ProxyPass / http://localhost:3001/ (fe or front end confs)
+    ProxyPassReverse / http://localhost:3001/  (fe or front end confs)
+
+
+</VirtualHost>
+
+restart apache2
+
+then when we check the ec2 ip address it will show default apache web page
+
+
+download nvm & node & npm & github
+
+download pm2 globally
+
+clone your repos
+
+then install modules npm i
+
+build the projects  (each time whenever redploy required)
+
+
+use this command to start proccesses 
+
+
+ pm2 start npm --name "yourappName" -- start -- --port <PORT NUMBER>
+
+
+pm2 logs
+
+
